@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>DataCleaner - Data Cleaning Tool</title>
+
+    <meta name="description" content="Professional data cleaning and validation tool for CSV files with comprehensive missing data handling and export options">
+    <meta name="keywords" content="data cleaning, csv cleaner, data validation, missing data, duplicate removal">
+    <meta property="og:title" content="DataCleaner - Data Cleaning Tool">
+    <meta property="og:description" content="Professional data cleaning and validation tool for CSV files">
+    <meta name="twitter:title" content="DataCleaner - Data Cleaning Tool">
+    <meta name="twitter:description" content="Professional data cleaning and validation tool for CSV files">
+
+    <script src="https://resource.trickle.so/vendor_lib/unpkg/react@18/umd/react.production.min.js"></script>
+    <script src="https://resource.trickle.so/vendor_lib/unpkg/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://resource.trickle.so/vendor_lib/unpkg/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://resource.trickle.so/vendor_lib/unpkg/lucide-static@0.516.0/font/lucide.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.9/dist/chart.umd.min.js"></script>
+
+    <!-- Tailwind CSS custom theme and styles -->
+    <style type="text/tailwindcss">
+        @layer theme {
+            :root {
+                --primary-color: #4b5563;
+                --secondary-color: #f9fafb;
+                --accent-color: #6b7280;
+                --warning-color: #d97706;
+                --danger-color: #dc2626;
+                --text-primary: #111827;
+                --text-secondary: #6b7280;
+                --border-color: #d1d5db;
+            }
+        }
+
+        @layer base {
+            body {
+                font-family: 'Inter', system-ui, sans-serif;
+                color: var(--text-primary);
+                background-color: #fafafa;
+
+                @apply flex items-center justify-center min-h-screen;
+            }
+        }
+
+        @layer components {
+            .btn-primary {
+                @apply px-6 py-3 bg-[var(--primary-color)] text-white rounded-lg font-medium hover:opacity-90 transition-all duration-200 flex items-center gap-2;
+            }
+
+            .btn-cleaning {
+                @apply px-6 py-3 bg-green-600 text-white rounded-lg font-medium hover:bg-green-700 transition-all duration-200 flex items-center gap-2;
+            }
+
+            .btn-secondary {
+                @apply px-6 py-3 bg-[var(--secondary-color)] text-[var(--text-primary)] rounded-lg font-medium hover:bg-gray-200 transition-all duration-200 border border-[var(--border-color)];
+            }
+
+            .card {
+                @apply bg-white rounded-xl shadow-sm border border-[var(--border-color)] p-6;
+            }
+
+            .upload-zone {
+                @apply border-2 border-dashed border-[var(--border-color)] rounded-xl p-8 text-center bg-[var(--secondary-color)] hover:border-[var(--primary-color)] transition-colors duration-200;
+            }
+
+            .stat-card {
+                @apply bg-white rounded-lg p-4 border border-[var(--border-color)] flex items-center gap-3;
+            }
+
+            .progress-bar {
+                @apply w-full bg-gray-200 rounded-full h-2 overflow-hidden;
+            }
+
+            .progress-fill {
+                @apply h-full bg-[var(--primary-color)] transition-all duration-300 ease-out;
+            }
+
+            .heatmap-cell {
+                @apply w-8 h-8 border border-gray-200 flex items-center justify-center text-xs font-medium cursor-pointer;
+            }
+
+            .outlier-badge {
+                @apply inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-red-100 text-red-800;
+            }
+
+            .correlation-grid {
+                @apply grid gap-1 p-4 bg-white rounded-lg border;
+            }
+
+            .preview-panel {
+                @apply bg-gray-50 border border-[var(--border-color)] rounded-lg p-4 max-h-64 overflow-y-auto;
+            }
+
+            .transformation-item {
+                @apply flex items-center justify-between p-3 bg-white border border-[var(--border-color)] rounded-lg;
+            }
+        }
+
+        @layer utilities {
+            .text-gradient {
+                background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+            }
+
+            .loading-spinner {
+                @apply animate-spin rounded-full border-2 border-gray-300 border-t-[var(--primary-color)];
+            }
+        }
+    </style>
+
+    <link rel="icon" href="https://app.trickle.so/storage/app/0237d2e0-9035-417d-9559-ecc12f1d072b.png">
+    <meta property="og:image" content="https://app.trickle.so/storage/app/0237d2e0-9035-417d-9559-ecc12f1d072b.png">
+    <meta name="twitter:image" content="https://app.trickle.so/storage/app/0237d2e0-9035-417d-9559-ecc12f1d072b.png">
+</head>
+
+<body>
+    <!-- Root div where the React app will be rendered -->
+    <div id="root" class="w-full max-w-4xl mx-auto p-4 text-center">
+        <!-- Your React components will be rendered here -->
+    </div>
+
+    <!-- React components and app logic -->
+    <script type="text/babel" src="components/Header.js"></script>
+    <script type="text/babel" src="components/FileUpload.js"></script>
+    <script type="text/babel" src="components/DataProfile.js"></script>
+    <script type="text/babel" src="components/CleaningOptions.js"></script>
+    <script type="text/babel" src="components/ExportPanel.js"></script>
+    <script type="text/babel" src="components/ProgressIndicator.js"></script>
+    <script type="text/babel" src="utils/dataProcessor.js"></script>
+    <script type="text/babel" src="utils/csvParser.js"></script>
+    <script type="text/babel" src="utils/duplicateDetection.js"></script>
+    <script type="text/babel" src="utils/outlierDetection.js"></script>
+    <script type="text/babel" src="utils/dataValidation.js"></script>
+    <script type="text/babel" src="utils/advancedCleaning.js"></script>
+    <script type="text/babel" src="app.js"></script>
+
+</body>
+
+</html>
+
