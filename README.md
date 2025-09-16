@@ -1,6 +1,7 @@
-- [🌐 View Live Demo](https://ratau-lebohang.github.io/Data-Cleaner/)
-
 # Data Cleaner 
+
+- [🌐 View Live Demo](https://ratau-lebohang.github.io/Data-Cleaner/)
+  
 A data cleaning tool for preparing datasets before analysis or modeling.  
 It ensures **quality, consistency, and readiness** of data for advanced analytics and machine learning workflows.  
 
@@ -28,4 +29,5 @@ By applying these cleaning actions, the dataset becomes:
 ---
 
 _Last updated: September 15, 2025_
+
 
